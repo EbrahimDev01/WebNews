@@ -177,47 +177,43 @@ namespace WebNews.Areas.Admin.Controllers
 
             await _context.AddAsync(news);
 
-
-            //if (newsVM.Medias?.Count > 0)
-            //{
-            //    foreach (IFormFile file in newsVM.Medias)
-            //    {
-            if (newsVM.Media.Length > 0)
+            foreach (var item in newsVM.Media)
             {
-                string getExtensionMedia = Path.GetExtension(newsVM.Media.FileName);
 
-                string newNameMedia = Guid.NewGuid().ToString();
-
-                string filePath = Path.Combine(
-                    Directory.GetCurrentDirectory(),
-                    "wwwroot",
-                    "ImagesNews",
-                    newNameMedia +
-                    getExtensionMedia);
-
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                if (item.Length > 0)
                 {
-                    newsVM.Media.CopyTo(stream);
+                    string getExtensionMedia = Path.GetExtension(item.FileName);
+
+                    string newNameMedia = Guid.NewGuid().ToString();
+
+                    string filePath = Path.Combine(
+                        Directory.GetCurrentDirectory(),
+                        "wwwroot",
+                        "ImagesNews",
+                        newNameMedia +
+                        getExtensionMedia);
+
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        item.CopyTo(stream);
+                    }
+
+                    var media = new Media()
+                    {
+                        MediaFileType = MediaFileType.Img,
+                        Name = newNameMedia + getExtensionMedia,
+                        News = news,
+                    };
+
+
+                    news.Medias.Add(media);
+
+                    _context.Add(media);
+
                 }
 
-                var media = new Media()
-                {
-                    MediaFileType = MediaFileType.Img,
-                    Name = newNameMedia,
-                    News = news,
-                    UserId = 1
-                };
-
-
-                news.Medias = new List<Media>();
-                media.Media.Add(media);
-
-                _context.Add(media);
-
             }
-            //}
-            //}
 
             await _context.SaveChangesAsync();
 

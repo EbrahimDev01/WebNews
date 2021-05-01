@@ -11,6 +11,12 @@ namespace WebNews.Models
     public class News
     {
 
+        public News()
+        {
+            Medias = new HashSet<Media>();
+            Comments = new HashSet<Comment>();
+        }
+
         [Key]
         public int NewsId { get; set; }
 

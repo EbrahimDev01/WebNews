@@ -10,6 +10,12 @@ namespace WebNews.Models
 {
     public class User
     {
+        public User()
+        {
+            Comments = new HashSet<Comment>();
+            News = new HashSet<News>();
+        }
+
         [Key]
         public int UserId { get; set; }
 

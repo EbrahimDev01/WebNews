@@ -5,7 +5,8 @@
         <a asp-controller="Archive"
            asp-action="ShowGroupInArchive"
            asp-route-groupId="@item.Id"
-           asp-route-groupName="@item.Name">
+           asp-route-groupName="@item.Name"
+           class="text-for-show">
             @item.Name
             <span>@item.Count</span>
         </a>

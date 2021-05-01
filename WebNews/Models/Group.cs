@@ -9,6 +9,12 @@ namespace WebNews.Models
 {
     public class Group
     {
+
+        public Group()
+        {
+            News = new HashSet<News>();
+        }
+
         [Key]
         public int GroupId { get; set; }
 

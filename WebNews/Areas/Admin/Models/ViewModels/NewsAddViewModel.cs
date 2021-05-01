@@ -65,6 +65,6 @@ namespace WebNews.Areas.Admin.Models.ViewModels
         public int Group { get; set; }
 
         [Display(Name = "تصاویر")]
-        public IFormFile Media { set; get; }
+        public List<IFormFile> Media { set; get; }
     }
 }

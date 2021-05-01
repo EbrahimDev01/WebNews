@@ -13,9 +13,10 @@
                     <h2>
                         <a asp-controller="News"
                            asp-action="News"
-                           asp-route-id="@item.Id">@item.Title</a>
+                           asp-route-id="@item.Id"
+                           class="text-for-show w-55">@item.Title</a>
                     </h2>
-                    <p>
+                    <p class="text-for-show">
                         @item.Text
                     </p>
                     <span> <i class="fa fa-calendar"></i> انتشار : @item.CreateDate</span>
