@@ -54,7 +54,8 @@ namespace WebNews.Controllers
                 GroupId = news.GroupId.Value,
                 GroupName = news.Group.Name,
                 Id = news.NewsId,
-                ImageName = await PathImage.GetPathImage(news.Medias.FirstOrDefault()?.Name),
+                //ImageName = await PathImage.GetPathImage(news.Medias.FirstOrDefault()?.Name),
+                ImagesName = news.Medias?.Select(m => m.Name).ToList(),
                 Text = news.Text,
                 Title = news.Title,
                 Tags = news.Tages.Split(',').ToList(),
@@ -62,11 +63,12 @@ namespace WebNews.Controllers
                 CountComment = news.Comments.Count()
             };
 
+
             return View(newsRes);
         }
 
 
-       
+
 
 
     }

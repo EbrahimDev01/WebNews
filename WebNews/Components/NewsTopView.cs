@@ -35,11 +35,11 @@ namespace WebNews.Components
                    {
                        CreateDate = n.CreateDate.ToSolarShort(),
                        Id = n.NewsId,
-                       ImageName = "/ImagesNews/" + n.Medias.FirstOrDefault().Name,
-                       Title = n.Title
+                       Title = n.Title,
+                       ImagesName = n.Medias.Select(m => m.Name).ToList()
 
                    });
-
+                //"/ImagesNews/" + n.Medias.FirstOrDefault().Name
 
                 return View("/Views/Components/NewsTopView.cshtml", newsTopView);
 

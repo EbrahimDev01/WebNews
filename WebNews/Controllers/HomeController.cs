@@ -33,7 +33,7 @@ namespace WebNews.Controllers
                     CreateDate = n.CreateDate.ToSolarShort(),
                     Text = n.Description,
                     Id = n.NewsId,
-                    ImageName = "/ImagesNews/" + n.Medias.FirstOrDefault().Name,
+                    ImagesName = new List<string>() { "/ImagesNews/" + n.Medias.FirstOrDefault().Name },
                     Title = n.Title
                 });
 

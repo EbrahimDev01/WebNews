@@ -31,7 +31,7 @@ namespace WebNews.Components
                    CreateDate = n.CreateDate.ToSolarShort(),
                    Id = n.NewsId,
                    Text = n.Description,
-                   ImageName = n.Medias.FirstOrDefault().Name,
+                   ImagesName = new List<string>() { n.Medias.FirstOrDefault().Name },
                    Title = n.Title
                }).ToList();
 

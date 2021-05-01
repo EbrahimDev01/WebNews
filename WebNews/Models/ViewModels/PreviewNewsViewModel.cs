@@ -7,11 +7,16 @@ namespace WebNews.Models.ViewModels
 {
     public class PreviewNewsViewModel
     {
+        public PreviewNewsViewModel()
+        {
+            ImagesName = new List<string>();
+        }
+
         public int Id { set; get; }
 
         public string Title { set; get; }
 
-        public string ImageName { set; get; }
+        public List<string> ImagesName { set; get; }
 
         public string Text { set; get; }
 

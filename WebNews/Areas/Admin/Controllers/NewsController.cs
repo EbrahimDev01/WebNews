@@ -223,5 +223,116 @@ namespace WebNews.Areas.Admin.Controllers
         #endregion
 
 
+        #region Edit 
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var news = await _context.News
+                .FindAsync(id);
+
+            if (news == null)
+            {
+                return NotFound();
+            }
+
+            var newsResult = new NewsAddViewModel()
+            {
+                Title = news.Title,
+                Description = news.Description,
+                Group = news.GroupId ?? 0,
+                InSlider = news.InSlider,
+                NewsId = news.NewsId,
+                Tages = news.Tages,
+                Text = news.Text
+            };
+            return View(newsResult);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, NewsAddViewModel newsVM)
+        {
+            if (id != newsVM.NewsId)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(newsVM);
+            }
+
+            var news = await _context.News.FindAsync(newsVM.NewsId);
+
+            if (news == null)
+            {
+                return NotFound();
+            }
+
+            news.Description = newsVM.Description;
+            news.GroupId = newsVM.Group;
+            news.InSlider = newsVM.InSlider;
+            news.Tages = newsVM.Tages;
+            news.Text = newsVM.Text;
+            news.Title = newsVM.Title;
+
+            if (news.Medias.Count > 0)
+            {
+                await _context.Medias
+                        .Where(m => m.NewsId == newsVM.NewsId)
+                        .ForEachAsync(m =>
+                        _context.Remove(m));
+
+                foreach (var item in newsVM.Media)
+                {
+                    if (item.Length > 0)
+                    {
+                        string getExtensionMedia = Path.GetExtension(item.FileName);
+
+                        string newNameMedia = Guid.NewGuid().ToString();
+
+                        string filePath = Path.Combine(
+                            Directory.GetCurrentDirectory(),
+                            "wwwroot",
+                            "ImagesNews",
+                            newNameMedia +
+                            getExtensionMedia);
+
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            item.CopyTo(stream);
+                        }
+
+                        var media = new Media()
+                        {
+                            MediaFileType = MediaFileType.Img,
+                            Name = newNameMedia + getExtensionMedia,
+                            News = news,
+                        };
+
+
+                        news.Medias.Add(media);
+
+                        _context.Add(media);
+                    }
+                }
+            }
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
+        #endregion
+
     }
+
 }
