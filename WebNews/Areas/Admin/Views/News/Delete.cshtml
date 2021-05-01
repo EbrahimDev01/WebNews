@@ -1,0 +1,58 @@
+﻿@model NewsDeleteViewModel
+@{
+    ViewData["Title"] = "حذف خبر" + Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Title)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Title)
+    </dd>
+</dl>
+
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.UserName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.UserName)
+    </dd>
+</dl>
+
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.GroupName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.GroupName)
+    </dd>
+</dl>
+
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.CreateDate)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.CreateDate)
+    </dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="NewsId" />
+    <input type="submit" value="حذف" class="btn btn-default" /> |
+    <a asp-action="Index">Back to List</a>
+</form>
+

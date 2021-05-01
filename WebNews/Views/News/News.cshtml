@@ -1,0 +1,95 @@
+﻿@model NewsViewModel
+
+<div class="">
+
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">خانه </a></li>
+        <li class="breadcrumb-item"><a href="#">اخبار </a></li>
+        <li class="breadcrumb-item"><a href="#">@Model.GroupName </a></li>
+        <li class="breadcrumb-item active">@Model.Title</li>
+    </ul>
+
+    <section class="single-news border-radius news-page">
+        <header><h2> @Model.Title </h2> <span> <i class="fa fa-calendar"></i>  انتشار : @Model.CreateDate</span></header>
+        <article>
+            <img src="@Model.ImageName" title="@Model.Title" class="news-page-img border-radius" />
+            <p>
+                @Model.Text
+            </p>
+        </article>
+        <section class="news-page-footer">
+            تعداد بازدید : @Model.View <i class="fa fa-eye"></i>
+        </section>
+    </section>
+
+    <div class="keywords border-radius">
+        @foreach (string tag in Model.Tags)
+        {
+            <a href="/Search?q=@tag"> @tag</a>
+        }
+    </div>
+
+
+    <section class="comment-layer">
+        <header> <i class="fa fa-comments"></i><h5> دیدگاه کاربران </h5><span> 25 دیدگاه </span> </header>
+        <ul id="section-comment">
+            @await Component.InvokeAsync("ShowCommentNews", new { id = Model.Id, take = 5 });
+        </ul>
+
+        <div class="buttons-Comment">
+            <button onclick="ShowComment(@Model.Id)" class=" p-4 btn btn-success btn-block">
+                نمایش کامنت ها
+            </button>
+
+            <button onclick="Hidencomment(@Model.Id)" class=" p-4 btn btn-danger btn-block">
+                پنهان کردن کامنت ها
+            </button>
+        </div>
+
+        <h6> شما هم دیدگاه خود را ارسال کنید </h6>
+
+        <div class="my-comment-form" id="send-comment">
+
+            <input type="hidden" asp-for="AddEditComment.CommentId" value="0" />
+
+            <div class="my-comment-form-title">
+                <label asp-for="AddEditComment.Title"></label>
+                <input asp-for="AddEditComment.Title" maxlength="160" class="form-control">
+                <span asp-validation-for="AddEditComment.Title" class="text-danger"></span>
+            </div>
+
+            <div class="my-comment-form-body">
+                <label asp-for="AddEditComment.Body"></label>
+                <textarea rows="5" asp-for="AddEditComment.Body" maxlength="650" class="form-control"></textarea>
+                <span asp-validation-for="AddEditComment.Body" class="text-danger"></span>
+            </div>
+
+            <span id="comment-error-summary" class="text-danger"></span>
+
+            <button type="button" onclick="SnedComment(@Model.Id)" id="btn-add-edit-comment" class="btn btn-success">
+                ثبت دیدگاه ارزشمند شما
+            </button>
+
+
+            @*<button type="button" id="btn-edit-comment" onclick="EditComment(@Model.Id)" class="btn btn-success d-none">
+            ویرایش دیدگاه ارزشمند شما
+        </button>*@
+
+            <button class="btn btn-danger" onclick="ClearInputs()">
+                لغو
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+</div>
+
+
+@section Scripts{
+    <script src="~/js/News.js"></script>
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

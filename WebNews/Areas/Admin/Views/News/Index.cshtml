@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ShowNewsViewModel>
+@{
+    ViewData["Title"] = "خبر ها";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.ImageName)
+            </th>
+
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.Title)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.Views)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.CreateDate)
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+
+            <tr>
+                <td scope="row">
+                    @if (!string.IsNullOrWhiteSpace(item.ImageName))
+                    {
+                        <img src="/ImagesNews/@item.ImageName" width="100"/>
+                    }
+                </td>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.Views
+                </td>
+                <td>
+                    @item.CreateDate
+                </td>
+                <td>
+                    <a class="btn btn-info"
+                       title="اطلاعات بیشتر"
+                       asp-area="Admin"
+                       asp-controller="News"
+                       asp-action="Details"
+                       asp-route-id="@item.NewsId">
+                        <i class="fa fa-info"></i>
+                    </a>
+
+                    <a class="btn btn-warning"
+                       title="ویرایش"
+                       asp-area="Admin"
+                       asp-controller="News"
+                       asp-action="Edit"
+                       asp-route-id="@item.NewsId">
+                        <i class="fa fa-edit"></i>
+                    </a>
+
+                    <a class="btn btn-danger"
+                       title="حذف"
+                       asp-area="Admin"
+                       asp-controller="News"
+                       asp-action="Delete"
+                       asp-route-id="@item.NewsId">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

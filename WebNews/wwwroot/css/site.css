@@ -1,0 +1,117 @@
+﻿.title-news {
+  max-width: 55%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.groups-news span {
+  display: none; }
+
+.section-search-form {
+  display: flex;
+  width: 100%;
+  justify-content: space-between; }
+  .section-search-form-search {
+    width: 350px; }
+
+.news-top-view .more-link {
+  display: none; }
+
+.news-page-img {
+  width: 100%;
+  margin-bottom: 25px; }
+
+.news-page-footer {
+  border-top: 1px solid #dfdfdf;
+  padding: 15px 20px; }
+
+.buttons-Comment {
+  padding: 20px; }
+
+.my-comment-form {
+  padding: 20px; }
+  .my-comment-form-title input {
+    padding: 10px; }
+  .my-comment-form-body textarea {
+    padding: 10px; }
+
+.my-comment-form-title, .my-comment-form-body {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column; }
+
+.comment-item {
+  margin: 15px 0; }
+  .comment-item-title {
+    margin-bottom: 15px; }
+  .comment-item-body h2 {
+    margin-bottom: 15px;
+    font-size: 18px; }
+  .comment-item-option {
+    margin: 10px 0;
+    padding: 1px;
+    position: relative;
+    overflow: hidden; }
+    .comment-item-option input[type=checkbox] {
+      top: -66px;
+      width: 100%;
+      display: block;
+      bottom: 0;
+      cursor: pointer;
+      height: 100px;
+      outline: none;
+      position: absolute;
+      z-index: 99999999999999; }
+      .comment-item-option input[type=checkbox]:checked ~ .comment-item-option-buttons {
+        margin-top: 35px;
+        height: 35px; }
+      .comment-item-option input[type=checkbox]:checked ~ .comment-item-option-plus:before, .comment-item-option input[type=checkbox]:checked ~ .comment-item-option-plus {
+        transform: rotate(0deg);
+        background-color: #ac2925; }
+    .comment-item-option-plus {
+      height: 5px;
+      width: 25px;
+      margin: 17px 10px; }
+      .comment-item-option-plus:before {
+        content: ' ';
+        width: 100%;
+        height: 100%;
+        transform: rotate(90deg); }
+    .comment-item-option-buttons {
+      overflow: hidden;
+      height: 0;
+      transition: height .2s ease-in-out, margin-top .2s ease-in-out;
+      margin-top: 0; }
+
+.comment-item-option-plus, .comment-item-option-plus:before {
+  border-radius: 10px;
+  display: block;
+  background: #0070ff;
+  transition: transform .3s ease-in-out,background-color .3s ease-in-out; }
+
+.d-none {
+  display: none !important; }
+
+html {
+  scroll-behavior: smooth; }
+
+a {
+  cursor: pointer; }
+
+.show-date-time {
+  text-align: right;
+  direction: ltr; }
+
+.tag {
+  display: inline-block;
+  padding: 2px 4px;
+  margin: 2px 3px;
+  background-color: darkgray;
+  color: black;
+  border-radius: 3px; }
+
+.img-details {
+  margin: 10px; }
+
+select.form-control {
+  height: 40px !important; }

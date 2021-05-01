@@ -1,0 +1,6 @@
+﻿@model IEnumerable<WebNews.Models.Group>
+
+    @foreach (var item in Model)
+    {
+        <option value="@item.GroupId">@item.Name</option>
+    }

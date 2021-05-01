@@ -1,0 +1,13 @@
+﻿@model IEnumerable<GroupShowViewModel>
+@foreach (var item in Model)
+{
+    <li>
+        <a asp-controller="Archive"
+           asp-action="ShowGroupInArchive"
+           asp-route-groupId="@item.Id"
+           asp-route-groupName="@item.Name">
+            @item.Name
+            <span>@item.Count</span>
+        </a>
+    </li>
+}

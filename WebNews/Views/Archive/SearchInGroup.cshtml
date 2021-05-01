@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebNews.Models.ViewModels.PreviewNewsViewModel>
+
+@await Component.InvokeAsync("AdvancedSearch")
+
+
+@if (Model == null || Model.Count() == 0)
+{
+    <div class="alert alert-danger">
+        مطلبی پیدا نشد
+    </div>
+}
+else
+{
+
+    <div>
+
+
+
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">خانه </a></li>
+
+            <li class="breadcrumb-item ">
+                <a asp-controller="Archive"
+                   asp-action="ArchiveAll">آرشیو اخبار</a>
+            </li>
+
+            <li class="breadcrumb-item active">
+                <a asp-controller="Archive"
+                   asp-action="ShowGroupInArchive"
+                   asp-route-groupId="@ViewData["GroupId"]"
+                   asp-route-groupName="@ViewData["Group"]">
+                    @(ViewData["Group"])
+                </a>
+            </li>
+
+
+            <li class="breadcrumb-item active">
+                <a asp-controller="Archive"
+                   asp-action="SearchInGroup"
+                   asp-route-groupId="@ViewData["GroupId"]"
+                   asp-route-groupName="@ViewData["Group"]"
+                   asp-route-q="@ViewData["Search"]">
+                    @ViewData["Search"]
+                </a>
+            </li>
+        </ul>
+
+        <!-- last news -->
+        <section class="last-news-section border-radius">
+            <header><i class="icons icon-doc-2"></i>  <h3>@(ViewData["Title"])</h3> </header>
+            <partial name="_ResultArchive" model="@Model" />
+        </section>
+        <!-- End last news -->
+
+        <ul class="pagination">
+            @for (int i = 0; i < (int)ViewData["MaxCount"]; i++)
+            {
+                <li class="@((i == (int)ViewData["skip"]) ? "active" : "")">
+                    <a asp-controller="Archive"
+                       asp-action="SearchInGroup"
+                       asp-route-take="@ViewData["take"]"
+                       asp-route-skip="@i"
+                       asp-route-groupId="@ViewData["GroupId"]"
+                       asp-route-groupName="@ViewData["Group"]"
+                       asp-route-q="@ViewData["Search"]">
+                        @(i+1)
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+}

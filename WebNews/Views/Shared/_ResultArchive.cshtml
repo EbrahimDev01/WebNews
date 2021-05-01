@@ -1,0 +1,25 @@
+﻿
+@model IEnumerable<WebNews.Models.ViewModels.PreviewNewsViewModel>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <img loading="lazy" class="border-radius" src="@item.ImageName">
+            <h2>
+                <a asp-controller="News"
+                   asp-action="News"
+                   asp-route-id="@item.Id"> @item.Title </a>
+            </h2>
+            <p>
+                @item.Text
+            </p>
+            <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : @item.CreateDate </span>
+
+            <a asp-controller="News"
+               asp-action="News"
+               asp-route-id="@item.Id"
+               class="more-link"><i class="icons icon-more"></i></a>
+        </li>
+
+    }
+</ul>

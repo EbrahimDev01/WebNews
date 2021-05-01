@@ -1,0 +1,116 @@
+﻿@model NewsDetailsViewModel
+
+@{
+    ViewData["Title"] = "جزئیات خبر" + Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(m => m.Title)
+        </dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.GroupName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(m => m.GroupName)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.CreateDate)
+        </dt>
+        <dd class="show-date-time">
+            @Html.DisplayFor(m => m.CreateDate)
+        </dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(m => m.Description)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.InSlider)
+        </dt>
+        <dd>
+            @Html.DisplayFor(m => m.InSlider)
+        </dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.NumberOfComments)
+        </dt>
+        <dd>
+            @Html.DisplayFor(m => m.NumberOfComments)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.Text)
+        </dt>
+        <dd>
+            @Html.DisplayFor(m => m.Text)
+        </dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.UserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(m => m.UserName)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.Views)
+        </dt>
+        <dd>
+            @Html.DisplayFor(m => m.Views)
+        </dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.NameMedias)
+        </dt>
+        <dd>
+            @foreach ( string image in Model.NameMedias)
+            {
+                <img src="/ImagesNews/@image" class="img-thumbnail img-details" width="200"/>
+            }
+        </dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(m => m.Tages)
+        </dt>
+        <dd>
+            @foreach (string tag in Model.Tages)
+            {
+                <span class="tag"> @tag </span>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.NewsId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

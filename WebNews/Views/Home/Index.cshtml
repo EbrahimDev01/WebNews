@@ -1,0 +1,15 @@
+﻿
+@model IEnumerable<PreviewNewsViewModel>
+
+@{
+    ViewData["Title"] = "سایت خبری برنامه نویسان";
+}
+
+@await Component.InvokeAsync("SliderPageIndex")
+
+<!-- last news -->
+<section class="last-news-section border-radius margin-top-60">
+    <header><i class="icons icon-doc-2"></i>  <h3>آخرین آخبار ارسالی</h3> </header>
+    <partial name="_ResultArchive" model="@Model" />
+</section>
+<!-- End last news -->

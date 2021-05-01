@@ -1,0 +1,18 @@
+﻿@model IEnumerable<GroupShowViewModel>
+
+
+<div class="last-news-side border-radius ">
+    <form action="/Search" method="get" class="section-search-form">
+        <input type="search" name="q" value="@ViewData["Search"]" class="form-control w-25 section-search-form-search" />
+
+        <input hidden name="groupName" value="@(ViewData["Group"])" />
+
+        <select asp-for="@ViewData["GroupId"]" name="groupId" asp-items="@(new SelectList(Model,"Id","Name"))">
+            <option value="0">همه گروه ها</option>
+        </select>
+
+       
+
+        <button type="submit" class="btn btn-primary">جست و جو</button>
+    </form>
+</div>

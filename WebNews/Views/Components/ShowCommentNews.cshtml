@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ShowCommentViewModel>
+
+
+@foreach (var item in Model)
+{
+    <!-- start each comment -->
+    <li class="comment-item" id="comment-item-@(item.CommentId)">
+
+        <img src="@item.Image">
+        <div class="comment-item-title">
+            <span> @item.UserName </span>
+            <span> @item.CreateDate </span>
+        </div>
+
+
+        <div class="comment-item-body">
+            <h2>
+                @item.Title
+            </h2>
+            <p>@item.Body</p>
+        </div>
+
+        <section class="comment-item-option">
+
+            <input type="checkbox" />
+
+            <div class="comment-item-option-plus"></div>
+
+            <div class="comment-item-option-buttons">
+                <button class="btn btn-danger" type="button" onclick="DeleteComment(@item.CommentId)">
+                    <i class="fa fa-times"></i>
+                </button>
+
+                <button class="btn btn-warning" onclick="SwithToEdit(@item.CommentId)" type="button">
+                    <i class="fa fa-edit"></i>
+                </button>
+            </div>
+        </section>
+    </li>
+    <!-- end each comment -->
+}
