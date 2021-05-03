@@ -66,5 +66,7 @@ namespace WebNews.Areas.Admin.Models.ViewModels
 
         [Display(Name = "تصاویر")]
         public List<IFormFile> Media { set; get; }
+
+        public List<MediaEditViewModel> MediaEdit { set; get; }
     }
 }

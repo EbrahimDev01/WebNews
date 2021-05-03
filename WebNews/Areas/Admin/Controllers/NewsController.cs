@@ -235,11 +235,17 @@ namespace WebNews.Areas.Admin.Controllers
             }
 
             var news = await _context.News
-                .FindAsync(id);
+                .Include(n => n.Medias)
+                .SingleOrDefaultAsync(n => n.NewsId == id);
 
             if (news == null)
             {
                 return NotFound();
+            }
+
+            if (news.Medias.Count > 0)
+            {
+
             }
 
             var newsResult = new NewsAddViewModel()
@@ -250,7 +256,12 @@ namespace WebNews.Areas.Admin.Controllers
                 InSlider = news.InSlider,
                 NewsId = news.NewsId,
                 Tages = news.Tages,
-                Text = news.Text
+                Text = news.Text,
+                MediaEdit = news.Medias.Select(m => new MediaEditViewModel()
+                {
+                    Id = m.MediaId,
+                    Media = m.Name
+                }).ToList()
             };
             return View(newsResult);
         }
@@ -283,12 +294,8 @@ namespace WebNews.Areas.Admin.Controllers
             news.Text = newsVM.Text;
             news.Title = newsVM.Title;
 
-            if (news.Medias.Count > 0)
+            if (newsVM.Media?.Count > 0)
             {
-                await _context.Medias
-                        .Where(m => m.NewsId == newsVM.NewsId)
-                        .ForEachAsync(m =>
-                        _context.Remove(m));
 
                 foreach (var item in newsVM.Media)
                 {
@@ -333,6 +340,25 @@ namespace WebNews.Areas.Admin.Controllers
 
         #endregion
 
+
+        [HttpPost("Admin/News/DeleteMedia/{id}")]
+        public async Task<IActionResult> DeleteMedia(int id)
+        {
+            try
+            {
+                _context.Medias.Remove(await _context.Medias
+                    .FindAsync(id));
+
+                await _context.SaveChangesAsync();
+
+                return Json(true);
+            }
+            catch
+            {
+                return Json(false);
+            }
+
+        }
     }
 
 }

@@ -263,3 +263,31 @@ select.form-control {
     }
 }
 
+.available-images {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 10px;
+
+    &-outer-image {
+        width: 120px;
+        position: relative;
+        margin: 15px 25px;
+        align-items: center;
+        justify-content: center;
+        display: inherit;
+
+        .btn-img-delete {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            border-radius: 50%;
+            height: 35px;
+            width: 35px;
+        }
+    }
+
+    &-image {
+        width: 100%;
+    }
+}

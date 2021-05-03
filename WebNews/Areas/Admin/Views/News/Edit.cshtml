@@ -58,8 +58,27 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input type="file" name="Media" multiple />
+                        <input type="file" asp-for="Media" multiple />
                     </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">تصاویر موجود این خبر</label>
+                <div class="available-images thumbnail">
+                    @foreach (var item in Model.MediaEdit)
+                    {
+                        <div id="image-@(item.Id)" class="img-thumbnail available-images-outer-image">
+
+
+                            <button onclick="deleteImage(@item.Id)" class="btn btn-danger btn-img-delete" type="button" title="حذف تصویر">
+                                <i class="fa fa-times"></i>
+                            </button>
+
+
+                            <img class="available-images-image" src="/ImagesNews/@item.Media" />
+                        </div>
+                    }
                 </div>
             </div>
 
@@ -78,4 +97,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/site.js"></script>
 }

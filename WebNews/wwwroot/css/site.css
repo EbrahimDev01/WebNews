@@ -167,3 +167,25 @@ select.form-control {
     .button-Circle-section-button:active .circle-2 {
       bottom: -25px;
       right: -25px; }
+
+.available-images {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 10px; }
+  .available-images-outer-image {
+    width: 120px;
+    position: relative;
+    margin: 15px 25px;
+    align-items: center;
+    justify-content: center;
+    display: inherit; }
+    .available-images-outer-image .btn-img-delete {
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      border-radius: 50%;
+      height: 35px;
+      width: 35px; }
+  .available-images-image {
+    width: 100%; }

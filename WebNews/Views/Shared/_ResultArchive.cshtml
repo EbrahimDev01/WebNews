@@ -4,7 +4,7 @@
     @foreach (var item in Model)
     {
     <li>
-        <img loading="lazy" class="border-radius" src="@item.ImagesName?.FirstOrDefault()">
+        <img loading="lazy" class="border-radius" src="/ImagesNews/@item.ImagesName?.FirstOrDefault()">
         <h2>
             <a asp-controller="News"
                asp-action="News"
