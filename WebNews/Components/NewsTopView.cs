@@ -39,8 +39,6 @@ namespace WebNews.Components
                        ImagesName = n.Medias.Select(m => m.Name).ToList()
 
                    });
-                
-                //"/ImagesNews/" + n.Medias.FirstOrDefault().Name
 
                 return View("/Views/Components/NewsTopView.cshtml", newsTopView);
 

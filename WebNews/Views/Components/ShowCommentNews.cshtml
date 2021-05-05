@@ -22,9 +22,11 @@
 
         <section class="comment-item-option">
 
-            <input type="checkbox" />
+            <input hidden type="checkbox" class="checkbox" id="show-options-comment-@(item.CommentId)" />
 
-            <div class="comment-item-option-plus"></div>
+            <label for="show-options-comment-@(item.CommentId)">
+                <span class="comment-item-option-plus"></span>
+            </label>
 
             <div class="comment-item-option-buttons">
                 <button class="btn btn-danger" type="button" onclick="DeleteComment(@item.CommentId)">

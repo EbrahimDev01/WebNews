@@ -53,15 +53,7 @@
     position: relative;
     overflow: hidden; }
     .comment-item-option input[type=checkbox] {
-      top: -66px;
-      width: 100%;
-      display: block;
-      bottom: 0;
-      cursor: pointer;
-      height: 100px;
-      outline: none;
-      position: absolute;
-      z-index: 99999999999999; }
+      display: none; }
       .comment-item-option input[type=checkbox]:checked ~ .comment-item-option-buttons {
         margin-top: 35px;
         height: 35px; }
